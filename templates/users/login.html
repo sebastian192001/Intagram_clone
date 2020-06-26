@@ -1,0 +1,35 @@
+{% extends 'users/base.html' %}
+
+
+{% block head_content %}
+    <title>Instagram sing in</title>
+{% endblock head_content %}
+    
+
+
+{% block container %}
+
+    
+    {% if form.errors %}
+        <p class="alert alert-danger">
+            your username and password didnt match. Please try again. 
+        </p>
+    {% endif %}
+        
+
+    <form action="{% url "users:login" %}" method="post">
+        {% csrf_token %}
+
+        <div class="form-group">
+            <input class="form-control" type="text" placeholder="Username" name="username">
+        </div>
+
+        <div class="form-group">
+            <input class="form-control" type="password" placeholder="Password" name="password">
+        </div>
+        <button class="btn btn-primary btn-block mt-5" type="submit">Sing in</button>
+    </form>
+
+    <p class="mt-4">Do not have an account yet? <a href="{% url "users:signup" %}"> Sign up here.</a> </p>
+{% endblock container %}
+    
